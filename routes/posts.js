@@ -9,8 +9,8 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 // const Contact = require('../models/Contact')
 
-// @route       GET api/contacts
-// @desc        Get all user contacts
+// @route       GET api/post
+// @desc        Get all user post
 // @access      Private
 router.get("/", auth, async (req, res) => {
   try {
@@ -23,8 +23,8 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-// @route       POST api/contacts
-// @desc        ADD new contact
+// @route       POST api/post
+// @desc        ADD new post
 // @access      Private
 router.post("/",[auth, [check("imageURL", "Image is required").not().isEmpty()]],
   async (req, res) => {
@@ -36,7 +36,7 @@ router.post("/",[auth, [check("imageURL", "Image is required").not().isEmpty()]]
     const { imageURL, title } = req.body;
     try {
       const posts = new Post({ imageURL, title });
-      const user = await User.findByIdAndUpdate(req.user.id, { $push: { posts } });
+      await User.findByIdAndUpdate(req.user.id, { $push: { posts } });
       res.json(await User.findById(req.user.id));
     } catch (err) {
       console.error(err.message);
@@ -79,8 +79,8 @@ router.post("/",[auth, [check("imageURL", "Image is required").not().isEmpty()]]
 //     }
 // });
 
-// @route       DELETE api/contacts/:id
-// @desc        Delete contact
+// @route       DELETE api/posts/:id
+// @desc        Delete post
 // @access      Private
 router.delete('/:id', auth, async (req, res) => {
     try {
@@ -89,6 +89,7 @@ router.delete('/:id', auth, async (req, res) => {
         posts = posts.filter(post => post._id.toString() !== req.params.id);
         user = await User.findByIdAndUpdate(req.user.id, { posts });
         res.json(await User.findById(req.user.id ));
+        // res.json({ msg: "Post Removed" });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
