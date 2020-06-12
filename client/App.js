@@ -1,12 +1,15 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { View, StatusBar, } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { Provider } from 'react-redux'
 import store from './states/store'
 
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
-import SignUp from './screens/signUp';
-import LogIn from './screens/logIn';
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
+
+import Navigator from './Navigator'
 
 // const theme = {
 //   ...DefaultTheme,
@@ -22,15 +25,11 @@ const App = () => {
   return (
     // <PaperProvider>
     <Provider store={store}>
-      <View>
-        <StatusBar backgroundColor="#2F0000" />
-        <SignUp />
-        {/* <LogIn/> */}
-      </View>
+      <StatusBar backgroundColor="#2F0000" />
+      <Navigator />
     </Provider>
     // </PaperProvider>
   );
 };
 
-
-export default App;
+export default (App);
