@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Text, View, StyleSheet, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
 import { Button, TextInput, Divider } from 'react-native-paper';
@@ -49,10 +48,6 @@ export const logIn = ({ auth: { isAuthenticated }, loginUser, ...props }) => {
         </ScrollView>
     );
 };
-
-// logIn.propTypes = {
-//     isAuthenticated: PropTypes.bool,
-// }
 
 const styles = StyleSheet.create({
     logo: {

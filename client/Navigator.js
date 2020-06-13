@@ -1,10 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useState, Fragment, useEffect } from 'react';
-import { View, StatusBar, StyleSheet } from 'react-native';
 import { AsyncStorage } from 'react-native';
-import { Provider, connect } from 'react-redux'
-import store from './states/store'
-
+import { connect } from 'react-redux'
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -18,7 +15,7 @@ import Loading from './screens/loading'
 import Home from './screens/home'
 
 export const Navigator = ({ auth: { isAuthenticated } }) => {
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const callTokenStorage = async () => {
         // await AsyncStorage.removeItem('token')
