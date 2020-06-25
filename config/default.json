@@ -1,4 +1,3 @@
 {
-  "mongoURI": "mongodb+srv://Notie:Notie@cluster0-wvfit.mongodb.net/<dbname>?retryWrites=true&w=majority",
   "jwtSecret" : "Secret"
 }
